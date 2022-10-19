@@ -1,4 +1,3 @@
-from dataclasses import field
 from django.db import models
 
 # Create your models here.
@@ -9,13 +8,22 @@ class author(models.Model):
     def __str__(self) -> str:
         return self.name
 
+class categories(models.Model):
+    categoryName = models.CharField(max_length=100)
+    
+    def __str__(self) -> str:
+        return self.categoryName
+
 class article(models.Model):
-    title=models.CharField(max_length=200)
-    image=models.ImageField()
+    imagetitle=models.CharField(max_length=80,null=True)
+    title=models.CharField(max_length=100,)
+    excerpt = models.CharField(max_length=200,null=True)
     author = models.ForeignKey(author,on_delete=models.CASCADE ,db_index=True)
+    authorimage = models.ImageField(null=True)
+    category = models.ForeignKey(categories,on_delete=models.CASCADE ,db_index=True,null=True)
     description=models.TextField()
     updatedAt=models.DateTimeField(auto_now=True)
     publishedAt=models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.title
+        return f"{self.title} - {self.category}"
