@@ -5,5 +5,6 @@ urlpatterns = [
     path("articles/",views.articles),
     path("articles/<str:pk>/",views.singleArticles),
     path("authors/",views.authors),
-    path("categories/",views.authors)
+    path("categories/",views.authors),
+    path("tags/",views.tags)
 ]

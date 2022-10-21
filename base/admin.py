@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import article,author,categories
+from .models import article,author,categories,tag
 from django.contrib.auth.models import Group
 # Register your models here.
 
@@ -17,5 +17,6 @@ class RichTextEditorAdmin(admin.ModelAdmin):
 
 admin.site.register(author)
 admin.site.register(article,RichTextEditorAdmin)
-admin.site.register(categories)
 admin.site.unregister(Group)
+admin.site.register(categories)
+admin.site.register(tag)
